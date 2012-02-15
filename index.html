@@ -1,19 +1,17 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1 user-scalable=no,width = 320" />
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <style type="text/css" media="screen">@import "stylesheet/themes/css/apple.css";</style>
     <style type="text/css" media="screen">@import "stylesheet/style.css";</style>
-    
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic">
-    
     <style type="text/css" media="screen">@import "stylesheet/custom.css";</style>
-    <script src="javascript/vendor/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-
+    <script src="javascript/vendor/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascript/vendor/jquery-raty/js/jquery.raty.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/vendor/jqtouch-jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/vendor/jquery.raty.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
       $.jQTouch({
         icon: 'jqtouch.png',
@@ -21,29 +19,29 @@
         preloadImages: []
       });
       $(document).ready(function(){ 
-        $('#home').swipe(function(){
-           console.log('swipe de');
+        $("#home").bind('swipe', function(event, info){
+              console.log(info.direction);
         });
-        $("#home").tap(function(){
+
+        $("#home").click(function(){
            console.log('tap de');
         })
            console.log('swipe added');
+        $("#star").raty({ path: "images/" })
       }); 
     </script>
   </head>
   <body>
        <div id="jqt">
             <div id="home">
-                <div class="toolbar ">
-                <div class="branding">
+                <div class="toolbar">
                     <h1>TV Ticker India</h1>
-                    </div>
-              </div>
+                </div>
                 <div>
 		  <div id="nav_bar">
-		    <div class="now"> Now </div>
-		    <div class="later_today">Later Today</div>
-		    <div class="favorites">Favorite</div>
+		    <div class="now"><a href="#"><b>Now</b></a></div>
+		    <div class="later_today"><a href="#">Later Today</a></div>
+		    <div class="favorites"><a href="#">Favorites</a></div>
 		  </div>
                 </div>
 		<ul class="rounded show-list">
@@ -51,7 +49,9 @@
 		    <a href="#edge" class="title">The Spy Next Door</a>
 		    <div class="details">
 		      <span class="type">Movie</span>
-		      <div id="star" class="rating" data-rating="3"><img src="images/star-on.png" alt="1" title="bad">&nbsp;<img src="images/star-off.png" alt="2" title="poor">&nbsp;<img src="images/star-off.png" alt="3" title="regular">&nbsp;<img src="images/star-off.png" alt="4" title="good">&nbsp;<img src="images/star-off.png" alt="5" title="gorgeous"></div>
+		      <div id="star" class="rating" data-rating="3">
+		
+		      </div>
 		      <div class="channel">
 			Star Movies
 		      </div>
@@ -65,12 +65,19 @@
                   <li class=""><a href="#metal" style="" class="">Metal</a></li>
                 </ul>
             </div>
-	    <div id="pop">
+	    <div id="metal">
 	      <div class="toolbar">
 		<h1>Pop</h1>
 		<a href="#" class="back">Back</a>
 	      </div>
-	      Hey this is cool!
+	      Hey this is cool metal!
+	    </div>
+	    <div id="plastic">
+	      <div class="toolbar">
+		<h1>Pop</h1>
+		<a href="#" class="back">Back</a>
+	      </div>
+	      Hey this is cool plastic!
 	    </div>
 
        </div>
