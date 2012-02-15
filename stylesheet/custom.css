@@ -35,7 +35,6 @@ h1 {
 	margin:auto;
 	background:#fff;
 	border:1px solid #ddd;
-	padding:0% 2%;
 	overflow:hidden;
 }
 #nav_bar > div {
@@ -46,6 +45,6 @@ h1 {
 	font-weight: medium;
 	color:#555;
 }
-#nav_bar > div.now{text-align:left;width: 32%;}
-#nav_bar > div.later_today{ text-align:center;}
-#nav_bar > div.favorites{text-align:right;width: 32%;}
+#nav_bar > div.now{text-align:left;}
+#nav_bar > div.later_today{ text-align:left;}
+#nav_bar > div.favorites{text-align:left; width:34%;}
