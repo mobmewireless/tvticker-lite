@@ -1,14 +1,4 @@
-#nav_bar{
-    width: 100%;
-    margin: 0 auto;
-}
-#nav_bar > div{
-    width: 33%;
-    float: left;
-    background-color: white;
-    margin-top: 15px;
-    border-right: 1px;
-}
+
 .show-list > li > div > p{
     width: 100%;
     font-size: .8em;

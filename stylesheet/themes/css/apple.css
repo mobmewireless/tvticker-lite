@@ -489,7 +489,7 @@ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
 	text-shadow:#e8ebee 0 1px 0*/
 }
 #jqt .toolbar {
-	-webkit-box-sizing:border-box;
+/*	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	-webkit-box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px;
 	box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px;
@@ -497,7 +497,7 @@ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
 	z-index:10;
 	position:relative;
 	padding:10px;
-	height:44px
+	height:44px*/
 }
 #jqt .toolbar > h1 {
 /*	position:absolute;
@@ -855,8 +855,8 @@ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 #jqt ul.rounded, #jqt ul.individual li {
 	-webkit-box-shadow:rgba(255, 255, 255, 0.15) 0 1px 0;
 	box-shadow:rgba(255, 255, 255, 0.15) 0 1px 0;
-	border:1px solid #52657f
-}
+/*	border:1px solid #52657f
+*/}
 #jqt ul.rounded {
 	-webkit-border-radius:8px;
 	border-radius:8px
@@ -1011,9 +1011,9 @@ background-color:#d9d9d9
 	font-weight:bold
 }
 #jqt > * {
-	background-color:#cbd2d8;
+/*	background-color:#cbd2d8;
 	background-image:repeating-linear-gradient(left, transparent, transparent 1px, #c5cdd4 1px, #c5cdd4 7px)
-}
+*/}
 #jqt .toolbar {
 	background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0.15)), color-stop(100%, rgba(255, 255, 255, 0))), -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #92a3b9), color-stop(50%, #7f93ad), color-stop(51%, #768ba7), color-stop(100%, #6d83a1));
 	background-image:-webkit-linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0)), -webkit-linear-gradient(top, #92a3b9, #7f93ad 50%, #768ba7 51%, #6d83a1);
