@@ -9,7 +9,6 @@
     <script src="javascript/vendor/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/jqtouch-jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascript/vendor/jquery.jswipe.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/jquery.raty.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
       $.jQTouch({
@@ -18,13 +17,10 @@
         preloadImages: []
       });
       $(document).ready(function(){ 
-        $("#home").swipe({
-          swipeLeft: function() { $('#someDiv').fadeIn() },
-          swipeRight: function() { $('#someDiv').fadeOut() },
-        })
-        $('#home').swipe(function(){
-           console.log('swipe de');
+        $("#home").bind('swipe', function(event, info){
+              console.log(info.direction);
         });
+
         $("#home").click(function(){
            console.log('tap de');
         })
@@ -72,14 +68,14 @@
 		<h1>Pop</h1>
 		<a href="#" class="back">Back</a>
 	      </div>
-	      Hey this is cool!
+	      Hey this is cool metal!
 	    </div>
 	    <div id="plastic">
 	      <div class="toolbar">
 		<h1>Pop</h1>
 		<a href="#" class="back">Back</a>
 	      </div>
-	      Hey this is cool!
+	      Hey this is cool plastic!
 	    </div>
 
        </div>
