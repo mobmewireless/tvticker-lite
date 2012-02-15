@@ -61,3 +61,12 @@ h1 {
 border-top:1px solid #ddd;
 border-left:1px solid #ddd;
 }
+
+#jqt ul li a {
+font-family: 'Roboto';
+font-weight: medium;
+}
+.details{
+margin:8px 0 0 0;
+line-height:25px;
+}

@@ -693,8 +693,8 @@ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
 }
 #jqt ul {
 	padding:0;
-	margin:15px 10px 17px 10px;
-	-webkit-margin-collapse:separate
+/*	margin:15px 10px 17px 10px;
+	-webkit-margin-collapse:separate*/
 }
 #jqt ul, #jqt ul.individual li {
 	background-color:white;
@@ -704,7 +704,7 @@ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
 	font:bold 18px "Helvetica Neue", Helvetica
 }
 #jqt ul li {
-	border-top:1px solid #f2f2f2;
+	border-top:1px solid #eee;
 	list-style-type:none;
 	overflow:hidden;
 	padding:10px;
@@ -858,15 +858,15 @@ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 /*	border:1px solid #52657f
 */}
 #jqt ul.rounded {
-	-webkit-border-radius:8px;
-	border-radius:8px
+/*	-webkit-border-radius:8px;
+	border-radius:8px*/
 }
 #jqt ul.rounded li:first-child, #jqt ul.rounded li:first-child a {
-	border-top:0;
+/*	border-top:0;
 	-webkit-border-top-left-radius:8px;
 	border-top-left-radius:8px;
 	-webkit-border-top-right-radius:8px;
-	border-top-right-radius:8px
+	border-top-right-radius:8px*/
 }
 #jqt ul.rounded li:last-child, #jqt ul.rounded li:last-child a {
 	-webkit-border-bottom-left-radius:8px;
