@@ -1,0 +1,20 @@
+
+#jqt .toolbar {
+background:#393939;
+
+}
+h1 {
+color:#fff;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size:18px;
+}
+.branding{
+background:url(../images/logo_32.png) no-repeat;
+height:33px;
+ margin: -5px 0px 0px;
+}
+.branding h1{
+padding:8px 0px 0px 38px;;
+}
