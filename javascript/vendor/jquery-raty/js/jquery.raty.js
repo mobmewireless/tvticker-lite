@@ -468,4 +468,4 @@
 		width:			undefined
 	};
 
-})(Zepto);
+})(jQuery);

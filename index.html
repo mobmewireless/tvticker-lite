@@ -6,9 +6,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <style type="text/css" media="screen">@import "stylesheet/themes/css/apple.css";</style>
     <style type="text/css" media="screen">@import "stylesheet/style.css";</style>
-    <script src="javascript/vendor/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-
-    <script src="javascript/vendor/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/vendor/jqtouch-1.0-b4-rc/src/lib/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/vendor/jqtouch-1.0-b4-rc/src/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/vendor/jqtouch-1.0-b4-rc/src/jqtouch-jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/vendor/jquery.jswipe.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/jquery-raty/js/jquery.raty.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
       $.jQTouch({
@@ -17,13 +18,18 @@
         preloadImages: []
       });
       $(document).ready(function(){ 
+        $("#home").swipe({
+          swipeLeft: function() { $('#someDiv').fadeIn() },
+          swipeRight: function() { $('#someDiv').fadeOut() },
+        })
         $('#home').swipe(function(){
            console.log('swipe de');
         });
-        $("#home").tap(function(){
+        $("#home").click(function(){
            console.log('tap de');
         })
            console.log('swipe added');
+        $("#star").raty()
       }); 
     </script>
   </head>
@@ -35,9 +41,9 @@
                 </div>
                 <div>
 		  <div id="nav_bar">
-		    <div><b>Now</b></div>
-		    <div>Later Today</div>
-		    <div>Favorite</div>
+		    <div><a href="#"><b>Now</b></a></div>
+		    <div><a href="#">Later Today</a></div>
+		    <div><a href="#">Favorite</a></div>
 		  </div>
                 </div>
 		<ul class="rounded show-list">
@@ -45,7 +51,9 @@
 		    <a href="#edge" class="title">The Spy Next Door</a>
 		    <div class="details">
 		      <span class="type">Movie</span>
-		      <div id="star" class="rating" data-rating="3"><img src="img/star-on.png" alt="1" title="bad">&nbsp;<img src="img/star-off.png" alt="2" title="poor">&nbsp;<img src="img/star-off.png" alt="3" title="regular">&nbsp;<img src="img/star-off.png" alt="4" title="good">&nbsp;<img src="img/star-off.png" alt="5" title="gorgeous"></div>
+		      <div id="star" class="rating" data-rating="3">
+		
+		      </div>
 		      <div class="channel">
 			Star Movies
 		      </div>
@@ -59,7 +67,14 @@
                   <li class=""><a href="#metal" style="" class="">Metal</a></li>
                 </ul>
             </div>
-	    <div id="pop">
+	    <div id="metal">
+	      <div class="toolbar">
+		<h1>Pop</h1>
+		<a href="#" class="back">Back</a>
+	      </div>
+	      Hey this is cool!
+	    </div>
+	    <div id="plastic">
 	      <div class="toolbar">
 		<h1>Pop</h1>
 		<a href="#" class="back">Back</a>
