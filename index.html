@@ -112,7 +112,6 @@ $(document).ready(function(){
 		  <div class="time">
 		    30 min left
 		  </div>
-
 		</div>
 	      </li>
 	      <li class=""><a href="#plastic" style="" class="">Plastic</a></li>
@@ -138,5 +137,26 @@ $(document).ready(function(){
 
     </div>
 
-  </body>
+       <script type="text/javascript" charset="utf-8">
+         function configure_rpc() {
+           $.jsonRPC.setup({
+             endPoint: 'http://localhost:3000/service',
+           });
+         }
+
+         function load_channels() {
+           $.jsonRPC.request('channels', {
+              success: function(result) {
+                 console.debug(result);
+              }
+           });
+         }
+
+         $(document).ready(function() {
+           configure_rpc();
+           load_channels();
+         });
+       </script>
+
+</body>
 </html>
