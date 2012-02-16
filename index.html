@@ -34,7 +34,7 @@ $(document).ready(function(){
 	console.log('tap de');
     })
 
-    $("#star").raty({ path: "images/" })
+    $("div[id=star]").raty({ path: "images/" })
     //Initialise
     iPhoneAnimation.init();
     
@@ -77,22 +77,23 @@ $(document).ready(function(){
 	<div id="wrapper" class="show-panel">
 	  <div id="c1" class="now content-box">
 	    <ul class="rounded show-list">
-	      <li class="">
-		<a href="#edge" class="title">The Spy Next Door</a>
-		<div class="details">
-		  <span class="type">Movie</span>
-		  <div id="star" class="rating" data-rating="3">
+ 
+     <li>
+    <a href="#cpam" class="title">Captain America</a>
+    <div class="details">
+      <span class="type">Movie</span>
+      <div id="star" class="rating" data-rating="5">
 
-		  </div>
-		  <div class="channel">
-		    Star Movies
-		  </div>
-		  <div class="time">
-		    30 min left
-		  </div>
+      </div>
+      <div class="channel">
+        Star Movies
+      </div>
+      <div class="time">
+        30 min left
+      </div>
 
-		</div>
-	      </li>
+    </div>
+  </li>
 	      <li class=""><a href="#plastic" style="" class="">Plastic</a></li>
 	      <li class=""><a href="#metal" style="" class="">Metal</a></li>
 	    </ul>
@@ -133,6 +134,23 @@ $(document).ready(function(){
 	  <a href="#" class="back">Back</a>
 	</div>
 	Hey this is cool plastic!
+      </div>
+
+       <div id="cpam">
+  <div class="toolbar">
+    <div class="branding">
+      <h1>Captain America</h1>
+    </div>
+    <a href="#" class="back">Back</a>
+  </div>
+   <div class="single_content">
+
+   <img src="images/captain_america.png" />
+
+  After being deemed unfit for military service, Steve Rogers volunteers for a top secret research project that turns him into Captain America, a superhero dedicated to defending the USA's ideals.
+
+  </div>
+
       </div>
 
     </div>
