@@ -39,8 +39,10 @@ h1 {
 	padding:0% 2%;
 	overflow:hidden;
 }
-
 #nav_bar > div {
+    position: relative;
+}
+#nav_bar > div > div {
 	width: 32%;
 	float: left;
 	padding:8px 0px 8px 0px;
@@ -48,10 +50,8 @@ h1 {
 	font-weight: medium;
 	color:#555;
 }
-#nav_bar > div >a{text-decoration:none; color:#555;}
-#nav_bar > div.now{text-align:left;}
-#nav_bar > div.later_today{ text-align:center;}
-#nav_bar > div.favorites{text-align:right;}
+#nav_bar > div > div >a{text-decoration:none; color:#555;}
+#nav_bar > div > div{ text-align:center;}
 
 .indicator{margin:auto;padding:0% 2%;width:10px;}
 .arrow{width:10px; height:10px; background:#eee; margin:-6px 0 0 0;
