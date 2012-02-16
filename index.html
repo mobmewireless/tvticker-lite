@@ -34,8 +34,7 @@ $(document).ready(function(){
     $("#home").click(function(){
 	console.log('tap de');
     })
-
-    $("#star").raty({ path: "images/" })
+    $("div[id=star]").raty({ path: "images/" })
     $("#wrapper").iphoneSlide({
       handler: "#pages",
       pageHandler : ".content-box",
@@ -74,11 +73,12 @@ $(document).ready(function(){
 	  <div id="pages">
 	    <div id="c1" class="now content-box">
 	      <ul class="rounded show-list">
-		<li class="">
-		  <a href="#edge" class="title">The Spy Next Door</a>
+		
+		<li>
+		  <a href="#cpam" class="title">Captain America</a>
 		  <div class="details">
 		    <span class="type">Movie</span>
-		    <div id="star" class="rating" data-rating="3">
+		    <div id="star" class="rating" data-rating="5">
 
 		    </div>
 		    <div class="channel">
@@ -121,40 +121,37 @@ $(document).ready(function(){
       <div id="metal">
 	<div class="toolbar">
 	  <h1>Pop</h1>
-	  <a href="#" class="back">Back</a>
+	    <a href="#" class="back">Back</a>
+	  </div>
+	  Hey this is cool metal!
 	</div>
-	Hey this is cool metal!
-      </div>
-      <div id="plastic">
-	<div class="toolbar">
-	  <h1>Pop</h1>
-	  <a href="#" class="back">Back</a>
+	<div id="plastic">
+	  <div class="toolbar">
+	    <h1>Pop</h1>
+	    <a href="#" class="back">Back</a>
+	  </div>
+	  Hey this is cool plastic!
 	</div>
-	Hey this is cool plastic!
+
+	<div id="cpam">
+	  <div class="toolbar">
+	    <div class="branding">
+	      <h1>Captain America</h1>
+	    </div>
+	    <a href="#" class="back">Back</a>
+	  </div>
+	  <div class="single_content">
+
+   <img src="images/captain_america.png" />
+
+  After being deemed unfit for military service, Steve Rogers volunteers for a top secret research project that turns him into Captain America, a superhero dedicated to defending the USA's ideals.
+
+  </div>
+
       </div>
 
     </div>
 
-       <script type="text/javascript" charset="utf-8">
-         function configure_rpc() {
-           $.jsonRPC.setup({
-             endPoint: 'http://localhost:3000/service',
-           });
-         }
-
-         function load_channels() {
-           $.jsonRPC.request('channels', {
-              success: function(result) {
-                 console.debug(result);
-              }
-           });
-         }
-
-         $(document).ready(function() {
-           configure_rpc();
-           load_channels();
-         });
-       </script>
-
+    <script type="text/javascript" charset="utf-8" src="javascript/site.js"></script>
 </body>
 </html>
