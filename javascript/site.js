@@ -1,12 +1,39 @@
-
+y
 function configure_rpc() {
     $.jsonRPC.setup({
         endPoint: 'http://localhost:3000/service'
     });
 }
 
+function load_now_showing() {
+
+    var now_showing = $('ul#now-showing');
+    var template_item = $(now_showing).find('li.template');
+
+    function make_program_item(program) {
+        var new_item = $(template_item).clone();
+        $(new_item).removeClass('template');
+        $(new_item).find('.name').text(program.name);
+        $(new_item).find('.type').text(program.category.name);
+        $(new_item).find('.rating').attr('data-rating', program.rating);
+        $(new_item).find('.channel').text(program.channel.name);
+        return new_item;
+    }
+
+    $.jsonRPC.request('now_showing', {
+        success: function(response) {
+            var programs = response.result;
+            $(programs).each(function(i, p) { 
+                $(now_showing).append(make_program_item(p));
+            })
+        }
+    });
+
+}
+
 $(function() {
     configure_rpc();
+    load_now_showing();
 });
 
 function init_interface(){
@@ -19,12 +46,14 @@ function init_interface(){
 				    // Animation complete.
 				});
 }
+
 $.jQTouch({
       icon: 'jqtouch.png',
       statusBar: 'black-translucent',
       preloadImages: [],
       slideSelector: "li.slide > a"
 });
+
 $(document).ready(function(){ 
     init_interface();
     $(".content-box").width($("#wrapper").width());
