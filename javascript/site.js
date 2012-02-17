@@ -1,7 +1,17 @@
 
-function configure_rpc() {
-    $.jsonRPC.setup({
-        endPoint: 'http://localhost:3000/service'
+var API_KEY = 'tvticker';
+
+function rpc_call(method, params, c) {
+    var timestamp = Date.now();
+    var hash = calcMD5(timestamp + API_KEY);
+    var rpc_params = [timestamp, hash];
+
+    rpc_params.unshift.apply(rpc_params, params);
+
+    $.jsonRPC.withOptions({
+        endPoint: 'http://192.168.1.79:3000/service'
+    }, function() {
+        this.request(method, { params: rpc_params, success: c, error: c });
     });
 }
 
@@ -14,25 +24,22 @@ function load_now_showing() {
         var new_item = $(template_item).clone();
         $(new_item).removeClass('template');
         $(new_item).find('.name').text(program.name);
-        $(new_item).find('.type').text(program.category.name);
+        $(new_item).find('.category').text(program.category.name);
         $(new_item).find('.rating').attr('data-rating', program.rating);
         $(new_item).find('.channel').text(program.channel.name);
         return new_item;
     }
 
-    $.jsonRPC.request('now_showing', {
-        success: function(response) {
-            var programs = response.result;
-            $(programs).each(function(i, p) { 
-                $(now_showing).append(make_program_item(p));
-            })
-        }
+    rpc_call('now_showing', [], function(response) {
+        var programs = response.result;
+        $(programs).each(function(i, p) { 
+            $(now_showing).prepend(make_program_item(p));
+        });
     });
 
 }
 
 $(function() {
-    configure_rpc();
     load_now_showing();
 });
 

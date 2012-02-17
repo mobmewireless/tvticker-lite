@@ -49,3 +49,5 @@ body > div {
 #pages div.content-box {
     float: left;
 }
+
+.template { display:none; }
