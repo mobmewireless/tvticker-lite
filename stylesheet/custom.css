@@ -38,6 +38,8 @@ h1 {
 	border:1px solid #ddd;
 	padding:0% 2%;
 	overflow:hidden;
+	z-index:6;
+	position:relative;
 }
 #nav_bar > div {
     position: relative;
@@ -53,7 +55,7 @@ h1 {
 #nav_bar > div > div >a{text-decoration:none; color:#555;}
 #nav_bar > div > div{ text-align:center;}
 
-.indicator{margin:auto;padding:0% 2%;width:10px;}
+.indicator{margin:auto;padding:0% 2%;width:10px;position:relative;z-index:10;}
 .arrow{width:10px; height:10px; background:#eee; margin:-6px 0 0 0;
 -webkit-transform: rotate(45deg)  ;
 -moz-transform: rotate(45deg) ;

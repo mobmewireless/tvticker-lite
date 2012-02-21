@@ -30,7 +30,7 @@
     float: right;
 }
 body > div {
-    max-width: 400px;
+/*    max-width: 400px; */
 }
 #wrapper {
        position: relative;
