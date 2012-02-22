@@ -52,7 +52,6 @@ $.jQTouch({
 
 $(document).ready(function(){ 
     init_interface();
-    $("#page1").height($("#jqt").height() - $(".toolbar").height() - $("#nav_wrapper").height());
     $(".flickable > * > *").width($("#page1").width());
     $("#home").bind('swipe', function(event, info){
 	console.log(info.direction);

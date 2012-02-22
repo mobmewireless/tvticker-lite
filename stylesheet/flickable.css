@@ -1,6 +1,5 @@
 /* Flickable wrapper */
 .flickable {
-    overflow: hidden;
     clear: both;
 }
 

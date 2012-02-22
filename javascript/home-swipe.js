@@ -1,9 +1,9 @@
 function init_interface(){
-    $("#wrapper > * > *").width($("body").width());
+    $("#wrapper > * > *").width($("#wrapper").width());
     var full_height = $("#jqt").height();
     var toolbar_height = $(".toolbar").height();
     var nav_height = $("#nav_wrapper").height();
-    //$("#wrapper").css({'min-height': (full_height - toolbar_height - nav_height)+ 'px'});
+    $("#wrapper").css({'min-height': (full_height - toolbar_height - nav_height)+ 'px'});
     var width = $('#nav_bar > div > div').width();
     var count = $('#nav_bar > div > div').size();
     var page = 1;
@@ -15,7 +15,7 @@ function init_interface(){
 }
 $(document).ready(function(){ 
     init_interface();
-    Flickable('#wrapper', {
+      Flickable('#wrapper', {
       itemWidth: $("#wrapper").width(),
       showIndicators: false,
       enableMouseEvents: true,
