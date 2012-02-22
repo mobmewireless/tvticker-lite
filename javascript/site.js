@@ -69,6 +69,7 @@ $(function() {
             $(new_item).find('.category').text(program.category.name);
             $(new_item).find('.rating').attr('data-rating', program.rating);
             $(new_item).find('.channel').text(program.channel.name);
+            $(new_item).find('.time-left').text(program.time_remaining + ' min left');
             return new_item;
         }
 
