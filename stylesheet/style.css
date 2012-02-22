@@ -35,7 +35,6 @@ body > div {
 #wrapper {
        position: relative;
        width: 100%;
-       overflow: hidden;
        margin: 0 auto;
 }
 
