@@ -98,3 +98,5 @@ text-indent:-9999px;
 width:32px;height:32px;
 
 }
+.pull-left{float:left;}
+.pull-right{float:right;}
