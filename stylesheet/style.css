@@ -38,15 +38,15 @@ body > div {
        margin: 0 auto;
 }
 
-#pages {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 450px;
-}
+/* #pages { */
+/*     position: absolute; */
+/*     top: 0px; */
+/*     left: 0px; */
+/*     width: 450px; */
+/* } */
 
-#pages div.content-box {
-    float: left;
-}
+/* #pages div.content-box { */
+/*     float: left; */
+/* } */
 
 .template { display:none; }
