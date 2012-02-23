@@ -70,10 +70,8 @@ $(function() {
 
             var new_item = $(template_item).clone();
             $(new_item).removeClass('template');
-            $(new_item).find('.name').
-                text(show.name).
-                attr('href', '#show').
-                data('show-id', show.id);
+            $(new_item).find('.details').data('show-id', show.id);
+            $(new_item).find('.name').text(show.name);
             $(new_item).find('.category').text(show.category.name);
             $(new_item).find('.rating').attr('data-rating', show.rating);
             $(new_item).find('.channel').text(show.channel.name);

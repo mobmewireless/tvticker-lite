@@ -45,9 +45,9 @@
           <div class="pages">
             <ul id="now-showing" class="page rounded show-list">
 	      <li class="template"><!-- item template -->
-		<div class="details">
+		<a href="#show" class="details block" style="display:block">
                   <div class="pull-left">
-		    <a href="#cpam" class="name"><!-- name --></a>
+		    <div href="#cpam" class="name"><!-- name --></div>
 		    <span class="category"><!-- category --></span>
 		    <div id="star" class="rating" data-rating=""></div>
                   </div>
@@ -55,7 +55,7 @@
 		    <div class="channel"><!-- channel.name --></div>
 		    <div class="time-left"><!-- time left --></div>
                   </div>
-		</div>
+		</a>
 	      </li>
             </ul>
             <ul id="later-today" class="page">
@@ -63,8 +63,10 @@
             </ul>
           </div>
         </div>
-
       </div>
+
+      <div id="show">The big show in the sky</div>
+
     </div>
   </body>
 </html>
