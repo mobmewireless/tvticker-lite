@@ -115,7 +115,7 @@ width:32px;height:32px;
 }
 .pull-left{float:left;}
 .pull-right{float:right;}
-.rating{ background:url('../images/rating.png'); width:50px; height:17px;}
+.rating{ background:url('../images/rating.png'); width:50px; height:17px; overflow:hidden;}
 .rating.none{ background-position: 0px 16px;}
 .rating.one{ background-position: 0px 33px;}
 .rating.two{ background-position: 0px 49px;}

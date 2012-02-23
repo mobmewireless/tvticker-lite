@@ -4,8 +4,8 @@
     font-size: .8em;
 }
 .show-list > li > div{
-    width: 100%;
     font-size: .8em;
+    line-height:25px;
 }
 .show-list .name {
     width: 100%;
@@ -18,7 +18,7 @@
 }
 .show-list .details .title{
 }
-.show-list .details .rating{
+.show-list .details {
     width: 100px;
     float: left;
 }
