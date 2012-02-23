@@ -38,7 +38,7 @@ $(function() {
 (function() {
 
     var API_KEY = 'tvticker';
-    var RPC_SERVER = 'http://localhost:3000/service';
+    var RPC_SERVER = 'http://enterprise.mobme.in/tv-ticker-api/service';
     
     window.rpc_call = function(method, params, c) {
         var timestamp = Date.now();
