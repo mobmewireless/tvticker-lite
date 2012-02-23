@@ -1,4 +1,4 @@
-$.jQTouch({
+var jQT = $.jQTouch({
       icon: 'jqtouch.png',
       statusBar: 'black-translucent',
       preloadImages: [],
@@ -38,7 +38,7 @@ $(function() {
 (function() {
 
     var API_KEY = 'tvticker';
-    var RPC_SERVER = 'http://10.0.0.129:3000/service';
+    var RPC_SERVER = 'http://localhost:3000/service';
     
     window.rpc_call = function(method, params, c) {
         var timestamp = Date.now();
@@ -57,29 +57,50 @@ $(function() {
 
 $(function() {
 
+    window.Model = {
+        shows: {}
+    };
+
     function load_nowshowing() {
 
         var now_showing = $('ul#now-showing');
         var template_item = $(now_showing).find('li.template');
         
-        function make_program_item(program) {
+        function show_entry(show) {
+
             var new_item = $(template_item).clone();
             $(new_item).removeClass('template');
-            $(new_item).find('.name').text(program.name);
-            $(new_item).find('.category').text(program.category.name);
-            $(new_item).find('.rating').attr('data-rating', program.rating);
-            $(new_item).find('.channel').text(program.channel.name);
-            $(new_item).find('.time-left').text(program.time_remaining + ' min left');
+            $(new_item).find('.name').
+                text(show.name).
+                attr('href', '#show').
+                data('show-id', show.id);
+            $(new_item).find('.category').text(show.category.name);
+            $(new_item).find('.rating').attr('data-rating', show.rating);
+            $(new_item).find('.channel').text(show.channel.name);
+            $(new_item).find('.time-left').text(show.time_remaining + ' min left');
+
             return new_item;
         }
 
         rpc_call('now_showing', [], function(response) {
-            var programs = response.result;
-            $(programs).each(function(i, p) { 
-                $(now_showing).prepend(make_program_item(p));
+            var shows = response.result;
+            $(shows).each(function(i, show) { 
+                Model.shows[show.id] = show;
+                $(now_showing).prepend(show_entry(show));
             });
         });
     }
 
     load_nowshowing();
-})
+
+    $('#show').bind('pageAnimationEnd', function() {
+        var show = Model.shows[$(this).data('referrer').data('show-id')];
+        $(this).find('.name').text(show.name);
+        $(this).find('.description .text').text(show.description);
+    });
+
+});
+
+
+
+
