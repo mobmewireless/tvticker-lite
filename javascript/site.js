@@ -45,7 +45,7 @@ $(function() {
         var hash = calcMD5(timestamp + API_KEY);
         var rpc_params = [timestamp, hash];
         
-        rpc_params.unshift.apply(rpc_params, params);
+        rpc_params.push.apply(rpc_params, params);
         
         $.jsonRPC.withOptions({ 
             endPoint: RPC_SERVER
@@ -80,7 +80,8 @@ $(function() {
             return new_item;
         }
 
-        rpc_call('now_showing', [], function(response) {
+        var count = 20;
+        rpc_call('now_showing', [count], function(response) {
             var shows = response.result;
             $(shows).each(function(i, show) { 
                 Model.shows[show.id] = show;
