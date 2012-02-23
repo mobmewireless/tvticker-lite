@@ -38,7 +38,8 @@ $(function() {
 (function() {
 
     var API_KEY = 'tvticker';
-    var RPC_SERVER = 'http://enterprise.mobme.in/tv-ticker-api/service';
+    var RPC_SERVER = 'http://api.tvticker.in/service';
+    //var RPC_SERVER = 'http://localhost:3000/service';
     
     window.rpc_call = function(method, params, c) {
         var timestamp = Date.now();
@@ -55,10 +56,34 @@ $(function() {
     }
 }());
 
+var Show = function(attrs) {
+
+    var self = this;
+    $.each(attrs, function(name, val) {
+        self[name] = val;
+    })
+
+    self.mins_start = function() {
+        var milli = Date.parse(this.air_time_start) - Date.now();
+        return Math.floor(milli / 60000);
+    }
+    
+    self.mins_end = function() {
+        var milli = Date.parse(this.air_time_end) - Date.now();
+        return Math.floor(milli/ 60000);
+    }
+
+    self.has_started = function() { 
+        return self.mins_start() < 0;
+    }
+
+    return this;
+}
+
 $(function() {
 
     window.Model = {
-        shows: {}
+        shows: { }
     };
 
     function load_nowshowing() {
@@ -75,15 +100,27 @@ $(function() {
             $(new_item).find('.category').text(show.category.name);
             $(new_item).find('.rating').attr('data-rating', show.rating);
             $(new_item).find('.channel').text(show.channel.name);
-            $(new_item).find('.time-left').text(show.time_remaining + ' min left');
+
+            if (show.has_started()) {
+                var t = show.mins_end(),
+                    m = (t==1 ? 'min' : 'mins');
+                $(new_item).find('.time-left').text(t+' ' + m +' left');
+            } else {
+                var t = show.mins_start(),
+                    m = (t==1 ? 'min' : 'mins');
+                $(new_item).find('.time-left').text('in '+ show.mins_start() +' '+m);
+            }
 
             return new_item;
         }
 
         var count = 20;
-        rpc_call('now_showing', [count], function(response) {
+        var params = [Date(), 'now', count];
+        rpc_call('programs_for_current_frame', params, function(response) {
             var shows = response.result;
-            $(shows).each(function(i, show) { 
+            $(shows).each(function(i, s) {
+                console.debug(s.program);
+                var show = new Show(s.program);
                 Model.shows[show.id] = show;
                 $(now_showing).prepend(show_entry(show));
             });
