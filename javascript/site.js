@@ -40,7 +40,7 @@ $(function setup_flickable() {
 
     Flickable('#start .flickable', {
         itemWidth: screenwidth,
-        enableMouseEvents: true,
+//        enableMouseEvents: true,
         showIndicators: false,
         callback: setnav
     });
@@ -129,6 +129,7 @@ $(function load_now_showing() {
         var new_item = $(template_item).clone();
         $(new_item).removeClass('template');
         $(new_item).find('.details').data('show-id', show.id);
+        $(new_item).prop('hash', '#show');
         $(new_item).find('.name').text(show.name);
         $(new_item).find('.category').text(show.category.name);
         $(new_item).find('.rating').attr('data-rating', show.rating);
@@ -148,7 +149,7 @@ $(function load_now_showing() {
     }
 
 
-    var count = 20;
+    var count = 10;
     Show.now_showing(count, function(shows) {
         if (shows.length > 0) // empty current list
             $(container).find('li:not(.template)').remove();
@@ -161,7 +162,7 @@ $(function load_now_showing() {
 });
 
 $(function load_later_today() {
-    var count = 20;
+    var count = 10;
     var container = $("#later-today");
     var template = $(container).find('.template').first();
 

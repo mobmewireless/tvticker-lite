@@ -68,7 +68,15 @@ var Flickable = function(elementSelector, options) {
             item.style.width = (settings.itemWidth * subItemCount) + 'px';
             
             // Get X and Y value from a touch or mouse event
-            var getXY = function(evt) {
+            var getXY = function(evt, caller) {
+                console.log('caller:' + caller + ' currentTouch: ' + currentTouch + ' touches:' + evt.touches.length);
+                if (evt.touches && evt.touches.length && !evt.touches[currentTouch]) {
+                    console.log('lost end events? curr=' + currentTouch + ', ' + touchesInUse);
+                    touchesInUse = evt.touches.length;
+                    currentTouch = touchesInUse - 1;
+                    $('.active').removeClass('active');
+                }
+
                 if (evt.touches && evt.touches.length) {
                     return [evt.touches[currentTouch].clientX, evt.touches[currentTouch].clientY];
                 } else {
@@ -80,11 +88,12 @@ var Flickable = function(elementSelector, options) {
             element.addEventListener(events.start, function(evt) {
                 
                 // Set up which touch to use (if multiple)
+                console.log('touch');
                 touchesInUse++;
                 currentTouch = touchesInUse - 1;
                 
                 // Get origin position
-                var origin = getXY(evt);
+                var origin = getXY(evt, 'listener');
                 var current = origin;
                 
                 // Disable animations while dragging
@@ -121,11 +130,12 @@ var Flickable = function(elementSelector, options) {
                 };
                 
                 var moveEvent = function(evt) {
-                    current = getXY(evt);
+                    current = getXY(evt, 'mouseEvent');
                     reposition(evt);
                 };
                 
                 var endEvent = function(evt) {
+                    console.log('endEvent');
                     var diff = current[0] - origin[0];
                     
                     // Enable animation
@@ -170,11 +180,13 @@ var Flickable = function(elementSelector, options) {
                     touchesInUse--;
                     
                     // Remove drag and end event listeners
+                    console.log('removing endEvent');
                     element.removeEventListener(events.move, moveEvent, false);
                     element.removeEventListener(events.end, endEvent, false);
                 };
                 
                 // Set up drag and end event listeners
+                console.log('Adding endEvent');
                 element.addEventListener(events.move, moveEvent, false);
                 element.addEventListener(events.end, endEvent, false);
                 
