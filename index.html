@@ -42,6 +42,7 @@
 
         <div class="flickable">
           <div class="pages">
+
             <ul id="now-showing" class="page rounded show-list">
 	      <li class="template"><!-- item template -->
 		<a href="#show" class="details block" style="display:block">
@@ -57,9 +58,28 @@
 		</a>
 	      </li>
             </ul>
-            <ul id="later-today" class="page">
-              <li>Bar</li>
-            </ul>
+
+            <div id="later-today" class="page">
+              <div class="template">
+                <div class="name"></div>
+                <ul class="rounded show-list">
+                  <li class="template show">
+		    <a href="#show" class="details block" style="display:block">
+                      <div class="pull-left">
+		        <div href="#cpam" class="name"><!-- name --></div>
+		        <span class="category"><!-- category --></span>
+		        <div id="star" class="rating" data-rating=""></div>
+                      </div>
+                      <div class="pull-right">
+		        <div class="channel"><!-- channel.name --></div>
+		        <div class="time-left"><!-- time left --></div>
+                      </div>
+		    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
