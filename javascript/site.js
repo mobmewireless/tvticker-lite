@@ -1,3 +1,14 @@
+
+(function($) {
+    $.fn.clone = function(){
+        var ret = $();
+        this.each(function(){
+            ret.push(this.cloneNode(true))
+        });
+        return ret;
+    };
+})(Zepto);
+
 var jQT = $.jQTouch({
       icon: 'jqtouch.png',
       statusBar: 'black-translucent',
@@ -39,7 +50,6 @@ $(function() {
 
     var API_KEY = 'tvticker';
     var RPC_SERVER = 'http://api.tvticker.in/service';
-    //var RPC_SERVER = 'http://localhost:3000/service';
     
     window.rpc_call = function(method, params, c) {
         var timestamp = Date.now();
