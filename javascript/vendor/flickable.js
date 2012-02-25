@@ -69,12 +69,13 @@ var Flickable = function(elementSelector, options) {
             
             // Get X and Y value from a touch or mouse event
             var getXY = function(evt, caller) {
-                console.log('caller:' + caller + ' currentTouch: ' + currentTouch + ' touches:' + evt.touches.length);
+
                 if (evt.touches && evt.touches.length && !evt.touches[currentTouch]) {
-                    console.log('lost end events? curr=' + currentTouch + ', ' + touchesInUse);
+                    // Looks like we didn't receive a few events. Have noticed this in some android phones
                     touchesInUse = evt.touches.length;
                     currentTouch = touchesInUse - 1;
-                    $('.active').removeClass('active');
+                    if (settings.onEventDrop)
+                        settings.onEventDrop();
                 }
 
                 if (evt.touches && evt.touches.length) {

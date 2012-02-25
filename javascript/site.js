@@ -1,5 +1,6 @@
 
 (function($) {
+    // Add clone method to Zepto
     $.fn.clone = function(){
         var ret = [];
         this.each(function(){
@@ -15,34 +16,49 @@ var jQT = $.jQTouch({
       preloadImages: [],
 });
 
-$(function setup_flickable() {
-
-    var screenwidth = $('#start .flickable').width();
-    var navwidth = $('#nav_bar > div > div').width();
-    var pagecount = $('#nav_bar > div > div').size();
-
-    setnav(0, true);
-    var page = $('#start .flickable .page');
-    var thickness = (parseInt($(page).css('border-left-width'))
-                     + parseInt($(page).css('border-right-width'))
-                     + parseInt($(page).css('margin-left'))
-                     + parseInt($(page).css('margin-right')));
-    var pagewidth = screenwidth - thickness;
-    $('#start .flickable .page').width(pagewidth);
-
-    function setnav(page, skip_animation) {
-        var pos = (navwidth * pagecount - navwidth * (page + 1));
-        if (skip_animation)
-            $('#nav_bar > div').css({ left: pos + 'px' });
-        else
-            $('#nav_bar > div').animate({ left: pos + 'px' }, 1000, 'swing');
+$(function setup_iscroll() {
+    window.scrollers = {
+        now_showing: new iScroll('now-showing', { hScroll:false, checkDOMChanges:false }),
+        later_today: new iScroll('later-today', { hScroll:false, checkDOMChanges:false })
     }
+});
+
+
+$(function setup_flickable_pages() {
+    /* Configures flickable for #start pages  */
+
+    var fullwidth = $('#start .flickable').width(),
+        navwidth  = $('#navbar > div > div').width(),
+        pagecount = $('#navbar > div > div').size();
+
+    // Set the width of each page, adjust for border & margin thickness
+    var p = $('#start .flickable .page');
+    var thickness =  (parseInt($(p).css('border-left-width'))
+                     + parseInt($(p).css('border-right-width'))
+                     + parseInt($(p).css('margin-left'))
+                     + parseInt($(p).css('margin-right')));
+    $(p).width(fullwidth - thickness);
+
+    function setnav(pageno, skip_animation) {
+        // position navbar
+        var pos = (navwidth * pagecount - navwidth * (pageno + 1));
+        if (skip_animation) {
+            $('#navbar > div').css({ left: pos + 'px' });
+        } else {
+            $('#navbar > div').animate({ left: pos + 'px' }, 5000, 'swing');
+        }
+    }
+    setnav(0);
 
     Flickable('#start .flickable', {
-        itemWidth: screenwidth,
-//        enableMouseEvents: true,
+        itemWidth: fullwidth,
+        enableMouseEvents: true,
         showIndicators: false,
-        callback: setnav
+        callback: setnav,
+        onEventDrop: function() {
+            // unset active buttons
+            $('.active').removeClass('active');
+        }
     });
 });
 
@@ -70,11 +86,7 @@ $(function setup_flickable() {
 var Show = function(attrs) {
 
     var self = this;
-    $.extend(this, attrs);
-
-    $.each(attrs, function(name, val) {
-        self[name] = val;
-    });
+    $.extend(self, attrs);
 
     self.mins_start = function() {
         var milli = Date.parse(this.air_time_start) - Date.now();
@@ -90,12 +102,12 @@ var Show = function(attrs) {
         return self.mins_start() < 0;
     }
 
-    return this;
+    return self;
 }
 
 Show.now_showing = function(limit, callback) {
     var params = [Date(), 'now', (limit || 20)];
-    rpc_call('programs_for_current_frame', params, function(response) {
+    rpc_call('current_frame_full_data', params, function(response) {
         var shows = [];
         for (i in response.result) {
             var show = new Show(response.result[i].program);
@@ -108,7 +120,7 @@ Show.now_showing = function(limit, callback) {
 
 Show.later_today = function(limit, callback) {
     var params = [Date(), 'later', (limit || 20)];
-    rpc_call('programs_for_current_frame', params, function(response) {
+    rpc_call('current_frame_full_data', params, function(response) {
         var shows = [];
         for (i in response.result) {
             var show = new Show(response.result[i].program);
@@ -119,95 +131,87 @@ Show.later_today = function(limit, callback) {
     });
 }
 
-$(function load_now_showing() {
+Show.populate_details = function(show, element) {
 
-    var container = $('ul#now-showing').first();
-    var template_item = $(container).find('li.template').first();
+    $('.name', element).text(show.name);
+    $('.category', element).text(show.category.name);
+    $('.channel', element).text(show.channel.name);
+    $('.rating', element).attr('data-rating', show.rating);
 
-    function show_entry(show) {
-
-        var new_item = $(template_item).clone();
-        $(new_item).removeClass('template');
-        $(new_item).find('.details').data('show-id', show.id);
-        $(new_item).prop('hash', '#show');
-        $(new_item).find('.name').text(show.name);
-        $(new_item).find('.category').text(show.category.name);
-        $(new_item).find('.rating').attr('data-rating', show.rating);
-        $(new_item).find('.channel').text(show.channel.name);
-
-        if (show.has_started()) {
-            var t = show.mins_end(),
-            m = (t==1 ? 'min' : 'mins');
-            $(new_item).find('.time-left').text(t+' ' + m +' left');
-        } else {
-            var t = show.mins_start(),
-            m = (t==1 ? 'min' : 'mins');
-            $(new_item).find('.time-left').text('in '+ show.mins_start() +' '+m);
-        }
-        
-        return new_item;
+    if (show.has_started()) {
+        var t = show.mins_end(),
+        time_left = t + (t==1 ? ' min ' : ' mins ') + 'left';
+    } else {
+        var t = show.mins_start(),
+        time_left = 'in ' + t + (t==1 ? ' min ' : ' mins ');
     }
 
+    $('.time-left', element).text(time_left);
+    $(element).prop('hash', $(element).attr('href'));
 
-    var count = 10;
+    return element;
+}
+
+$(function load_now_showing() {
+
+    var count = 20,
+        container = $('#now-showing ul'),
+        template  = $('.template', container);
+    
+    
+    function new_show_item(show) {
+        var s = $(template).clone();
+        return Show.populate_details(show, $(s).removeClass('template'));
+    }
+
     Show.now_showing(count, function(shows) {
-        if (shows.length > 0) // empty current list
-            $(container).find('li:not(.template)').remove();
-
         $.each(shows, function(i, show) {
-            $(container).append(show_entry(show));
+            $(container).append(new_show_item(show));
+            scrollers.now_showing.refresh();
         });
     });
-
 });
 
 $(function load_later_today() {
-    var count = 10;
-    var container = $("#later-today");
-    var template = $(container).find('.template').first();
+    var count = 20,
+        container = $('#later-today > div'),
+        template = $(container).find('.template').first();
 
-    function new_category_container(category_name) {
-        var new_category = $(template).clone();
-        $(new_category).removeClass('template');
-        $(new_category).find('.name').first().text(category_name);
-        return new_category;
+    function new_category_item(name) {
+        var c = $(template).clone();
+        $(c).removeClass('template');
+        $('.name', c).first().text(name);
+        return c;
     }
 
-    function new_show(show) {
-        var new_show = $(template).find('li.show').clone();
-        $(new_show).removeClass('template');
-        $(new_show).find('.details').data('show-id', show.id);
-        $(new_show).find('.name').text(show.name);
-        $(new_show).find('.category').text(show.category.name);
-        $(new_show).find('.rating').attr('data-rating', show.rating);
-        $(new_show).find('.channel').text(show.channel.name);
-        return new_show;
+    function new_show_item(show) {
+        var s = $(template).find('.show').clone();
+        return Show.populate_details(show, $(s).removeClass('template'));
     }
 
     Show.later_today(count, function(shows) {
-
-        if (shows.length > 0) // empty current list
-            ;//$(container).find('div:not(.template)').remove();
-
-        var categories={}, category_names=[];
+        var categories = {},
+            names = [];
         $.each(shows, function(i, show) {
             var name = show.category.name.split(':')[0];
-            if (!categories[name]) {
+            if (!categories[name])
+            {
                 categories[name] = [];
-                category_names.push(name);
+                names.push(name);
             }
             categories[name].push(show);
         });
-        category_names.sort();
 
-        $.each(category_names, function(i, name) {
-            var category_container = new_category_container(name);
+        names.sort();
+        $.each(names, function(i, name) {
+            var category_container = new_category_item(name);
             $(container).append(category_container);
             $.each(categories[name], function(i, show) {
-                $(category_container).find('ul').append(new_show(show));
+                $('ul', category_container).append(new_show_item(show));
             });
         });
-
+        scrollers.later_today.refresh();
     });
 });
+
 
