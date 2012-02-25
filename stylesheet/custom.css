@@ -120,3 +120,33 @@ width:32px;height:32px;
 .rating.three{ background-position: 0px 66px;}
 
 .category{display:block;}
+
+
+.thumbnail {
+    background:#000;
+    width:100%;
+    padding:20px 0px;
+}
+
+.thumbnail img {
+    display:block;	
+    margin:auto;
+}
+
+.description {
+    width:100%;
+    text-align:center;
+    background:#fff;
+    padding:20px 0px;
+}
+
+.more_button {
+    width:215px;
+    margin:auto;
+}
+
+.reviews{
+    float:left;
+    margin:17px 0px 0px -17px;
+    z-index:-1;
+}

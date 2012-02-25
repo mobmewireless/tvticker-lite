@@ -88,6 +88,11 @@ var Show = function(attrs) {
     var self = this;
     $.extend(self, attrs);
 
+    // Set thumbnail URL
+    var thumbnail_url_template = "http://admin.tvticker.in/image/:thumbnail_id/thumbnail";
+    self.thumbnail_url = thumbnail_url_template.replace(/:id/, self.thumbnail_id);
+
+
     self.mins_start = function() {
         var milli = Date.parse(this.air_time_start) - Date.now();
         return Math.floor(milli / 60000);
@@ -136,7 +141,9 @@ Show.populate_details = function(show, element) {
     $('.name', element).text(show.name);
     $('.category', element).text(show.category.name);
     $('.channel', element).text(show.channel.name);
+    $('.description', element).text(show.description);
     $('.rating', element).attr('data-rating', show.rating);
+    $('.thumbnail img', element).attr('src', show.thumbnail_url);
 
     if (show.has_started()) {
         var t = show.mins_end(),
@@ -148,6 +155,8 @@ Show.populate_details = function(show, element) {
 
     $('.time-left', element).text(time_left);
     $(element).prop('hash', $(element).attr('href'));
+    $(element).data('show-id', show.id);
+
 
     return element;
 }
@@ -214,4 +223,11 @@ $(function load_later_today() {
     });
 });
 
+$(function onpage_show() {
+    $('#show').bind('pageAnimationEnd', function() {
+        var show = Show[$(this).data('referrer').data('show-id')];
+        $('.title', this).text(show.name);
+        Show.populate_details(show, this);
+    });
+});
 
