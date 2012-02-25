@@ -11,9 +11,11 @@
 })(Zepto);
 
 var jQT = $.jQTouch({
-      icon: 'jqtouch.png',
-      statusBar: 'black-translucent',
-      preloadImages: [],
+    icon: 'jqtouch.png',
+    statusBar: 'black-translucent',
+    preloadImages: [],
+    startupScreen: 'images/splash.png',
+    icon: 'images/logo_32.png'
 });
 
 $(function setup_iscroll() {
@@ -42,11 +44,15 @@ $(function setup_flickable_pages() {
     function setnav(pageno, skip_animation) {
         // position navbar
         var pos = (navwidth * pagecount - navwidth * (pageno + 1));
+        
+        console.log(navwidth);
         if (skip_animation) {
             $('#navbar > div').css({ left: pos + 'px' });
         } else {
             $('#navbar > div').animate({ left: pos + 'px' }, 5000, 'swing');
         }
+        $('#navbar .selected').removeClass('selected');
+        $($('#navbar > div > div')[pageno]).addClass('selected');
     }
     setnav(0);
 
