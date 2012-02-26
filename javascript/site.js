@@ -44,8 +44,7 @@ $(function setup_flickable_pages() {
     function setnav(pageno, skip_animation) {
         // position navbar
         var pos = (navwidth * pagecount - navwidth * (pageno + 1));
-        
-        console.log(navwidth);
+
         if (skip_animation) {
             $('#navbar > div').css({ left: pos + 'px' });
         } else {
@@ -96,7 +95,7 @@ var Show = function(attrs) {
 
     // Set thumbnail URL
     var thumbnail_url_template = "http://admin.tvticker.in/image/:thumbnail_id/thumbnail";
-    self.thumbnail_url = thumbnail_url_template.replace(/:id/, self.thumbnail_id);
+    self.thumbnail_url = thumbnail_url_template.replace(/:thumbnail_id/, self.thumbnail_id);
 
 
     self.mins_start = function() {
