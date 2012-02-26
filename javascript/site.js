@@ -94,9 +94,10 @@ var Show = function(attrs) {
     $.extend(self, attrs);
 
     // Set thumbnail URL
-    var thumbnail_url_template = "http://admin.tvticker.in/image/:thumbnail_id/thumbnail";
-    self.thumbnail_url = thumbnail_url_template.replace(/:thumbnail_id/, self.thumbnail_id);
-
+    self.thumbnails = {
+        small: "http://admin.tvticker.in/image/:thumbnail_id/icon60".replace(/:thumbnail_id/, self.thumbnail_id),
+        large: "http://admin.tvticker.in/image/:thumbnail_id/thumbnail".replace(/:thumbnail_id/, self.thumbnail_id)
+    }
 
     self.mins_start = function() {
         var milli = Date.parse(this.air_time_start) - Date.now();
@@ -110,6 +111,10 @@ var Show = function(attrs) {
 
     self.has_started = function() { 
         return self.mins_start() < 0;
+    }
+    
+    self.has_ended = function() {
+        return self.mins_end() < 0;
     }
 
     return self;
@@ -144,24 +149,25 @@ Show.later_today = function(limit, callback) {
 Show.populate_details = function(show, element) {
 
     $('.name', element).text(show.name);
-    $('.category', element).text(show.category.name);
+    $('.category', element).text(show.category.name.replace(/:/, ' > '));
     $('.channel', element).text(show.channel.name);
     $('.description', element).text(show.description);
     $('.rating', element).attr('data-rating', show.rating);
-    $('.thumbnail img', element).attr('src', show.thumbnail_url);
+    $('img.thumbnail.small', element).attr('src', show.thumbnails.small);
+    $('.thumbnail.large img', element).attr('src', show.thumbnails.large);
 
     if (show.has_started()) {
         var t = show.mins_end(),
         time_left = t + (t==1 ? ' min ' : ' mins ') + 'left';
+        $('.time-left', element).addClass('started');
     } else {
         var t = show.mins_start(),
-        time_left = 'in ' + t + (t==1 ? ' min ' : ' mins ');
+        time_left = 'Starts in ' + t + (t==1 ? ' min ' : ' mins ');
     }
 
     $('.time-left', element).text(time_left);
     $(element).prop('hash', $(element).attr('href'));
     $(element).data('show-id', show.id);
-
 
     return element;
 }
@@ -180,7 +186,9 @@ $(function load_now_showing() {
 
     Show.now_showing(count, function(shows) {
         $.each(shows, function(i, show) {
-            $(container).append(new_show_item(show));
+            var s = new_show_item(show);
+            $(container).append(s);
+            $('.desc', s).width($('.details', s).width() - 80);
             scrollers.now_showing.refresh();
         });
     });
@@ -221,7 +229,9 @@ $(function load_later_today() {
             var category_container = new_category_item(name);
             $(container).append(category_container);
             $.each(categories[name], function(i, show) {
-                $('ul', category_container).append(new_show_item(show));
+                var s = new_show_item(show);
+                $('ul', category_container).append(s);
+                $('.desc', s).width($('.details', s).width() - 80);
             });
         });
         scrollers.later_today.refresh();
