@@ -157,6 +157,13 @@ width:32px;height:32px;
 }
 .details .desc { margin-left:15px; }
 
+.category-name { 
+    font-weight:bold; 
+    background-color:#eee;
+    padding:3px 2px;
+}
+
+
 .thumbnail.large {
     background:#000;
     width:100%;

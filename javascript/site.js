@@ -202,7 +202,7 @@ $(function load_later_today() {
     function new_category_item(name) {
         var c = $(template).clone();
         $(c).removeClass('template');
-        $('.name', c).first().text(name);
+        $('.category-name', c).text('[' + name + ']');
         return c;
     }
 
