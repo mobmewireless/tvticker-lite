@@ -167,4 +167,5 @@ width:32px;height:32px;
     z-index:-1;
 }
 
-
+#start ul { border:0; }
+#start { background-color:white; }
