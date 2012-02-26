@@ -21,10 +21,9 @@ var jQT = $.jQTouch({
 $(function setup_iscroll() {
     window.scrollers = {
         now_showing: new iScroll('now-showing', { hScroll:false, checkDOMChanges:false }),
-        later_today: new iScroll('later-today', { hScroll:false, checkDOMChanges:false })
+        later_today: new iScroll('later-today', { hScroll:false, checkDOMChanges:false }),
     }
 });
-
 
 $(function setup_flickable_pages() {
     /* Configures flickable for #start pages  */
@@ -152,9 +151,8 @@ Show.populate_details = function(show, element) {
     $('.category', element).text(show.category.name.replace(/:/, ' > '));
     $('.channel', element).text(show.channel.name);
     $('.description', element).text(show.description);
-    $('.rating', element).attr('data-rating', show.rating);
     $('img.thumbnail.small', element).attr('src', show.thumbnails.small);
-    $('.thumbnail.large img', element).attr('src', show.thumbnails.large);
+    $('img.thumbnail.large', element).attr('src', show.thumbnails.large);
 
     if (show.has_started()) {
         var t = show.mins_end(),
@@ -168,6 +166,9 @@ Show.populate_details = function(show, element) {
     $('.time-left', element).text(time_left);
     $(element).prop('hash', $(element).attr('href'));
     $(element).data('show-id', show.id);
+
+    // Limit max rating to 3
+    $('.rating', element).addClass('r' + Math.min(3, Math.floor(show.rating)));
 
     return element;
 }
