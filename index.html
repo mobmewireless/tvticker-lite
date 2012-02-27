@@ -18,23 +18,23 @@
     <script src="javascript/site.js" type="text/javascript" charset="utf-8"></script>    
     <style type="text/css">
       #header { 
-        position:absolute;
-        width:100%;
-        top:0;
-        height:40px;
-        z-index:30;
+      position:absolute;
+      width:100%;
+      top:0;
+      height:40px;
+      z-index:30;
       }
       #nav-wrapper {
-        position:absolute;
-        width:100%;
-        top:40px;
+      position:absolute;
+      width:100%;
+      top:40px;
       }
       .flickable {
-        position:absolute;
-        width:100%;
-        top:80px;
-        bottom:1px;
-        overflow:hidden;
+      position:absolute;
+      width:100%;
+      top:80px;
+      bottom:1px;
+      overflow:hidden;
       }
       .page { height:100%; }
       #jqt .template { display:none }
@@ -68,29 +68,39 @@
 
         <div class="flickable">
           <div id="pages">
-
             <div id="now-showing" class="page">
-              <ul>
-                <li href="#show" class="template touch button">
-                  <div class="details">
-                    <div class="pull-left">
-		      <div class="name"></div>
-		      <span class="category"></span>
-		      <span class="rating" data-rating=""></span>
-                    </div>
-                    <div class="pull-right">
-		      <div class="channel"></div>
-		      <div class="time-left"></div>
-                    </div>
-		  </div>
-                </li>
-              </ul>
-            </div>
+	      <div>
+		<div id="pullDown">
+		  <span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to refresh...</span>
+		</div>
+		<ul>
+
+                  <li href="#show" class="template touch button">
+                    <div class="details">
+                      <div class="pull-left">
+			<div class="name"></div>
+			<span class="category"></span>
+			<span class="rating" data-rating=""></span>
+                      </div>
+                      <div class="pull-right">
+			<div class="channel"></div>
+			<div class="time-left"></div>
+                      </div>
+		    </div>
+                  </li>
+		</ul>
+              </div>
+	    </div>
 
             <div id="later-today" class="page">
               <div>
+		<div id="pullDown">
+		  <span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to refresh...</span>
+		</div>
+
                 <div class="template">
                   <div class="name"></div>
+		
                   <ul>
                     <li href="#show" class="show template touch button">
                       <div class="details">
