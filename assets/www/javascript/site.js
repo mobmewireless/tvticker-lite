@@ -183,7 +183,7 @@ Show.populate_details = function(show, element) {
 
     $('.name', element).text(show.name);
     $('.category', element).text(show.category.name.replace(/:/, ' > '));
-    $('.channel', element).text(show.channel.name);
+    $('.channel', element).text('on ' + show.channel.name);
     $('.description', element).text(show.description);
     $('img.thumbnail.small', element).attr('src', show.thumbnails.small);
     $('img.thumbnail.large', element).attr('src', show.thumbnails.large);
@@ -194,7 +194,7 @@ Show.populate_details = function(show, element) {
         $('.time-left', element).addClass('started');
     } else {
         var t = show.mins_start(),
-        time_left = 'Starts in ' + t + (t==1 ? ' min ' : ' mins ');
+        time_left = 'in ' + t + (t==1 ? ' min ' : ' mins ');
     }
 
     $('.time-left', element).text(time_left);
