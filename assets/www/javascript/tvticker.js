@@ -116,6 +116,7 @@ var Show = function(attrs) {
     self.populateDetails = function(elem) {
         $('.title', elem).text(self.name);
         $('.category', elem).text(self.category.name.replace(/:/, '> '));
+        $('.category-sub', elem).text(self.category.name.split(/:/)[1]);
         $('.channel', elem).text('on ' + self.channel.name);
         
         if (self.hasStarted()) {

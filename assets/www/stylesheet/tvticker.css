@@ -68,23 +68,18 @@ h1 {
     position:relative;
 }
 
-#navbar .arrow.foreground {
-    top:23px;
-}
-
+#navbar .arrow.foreground { top:23px; }
 #navbar .arrow.background {
     border-bottom-color:rgba(204, 204, 204, 0.7);
     top:27px;
 }
 
 
-#flickables { margin-top:80px; }
+#flickables { margin-top:75px; }
 #flickables ul { border:0; }
 #flickables li:first-child  { border-top:0; }
 
 .branding h1 { padding:8px 0px 0px 38px; }
-
-.toolbar-gap { margin-top:40px; }
 
 .template { display:none; }
 
@@ -113,16 +108,32 @@ h1 {
 .show .rating.r2 { background-position: 0px 49px;}
 .show .rating.r3 { background-position: 0px 66px;}
 
-h2 { 
-    background-color:white; 
-    font-size:1em;
-    font-weight:normal;
-}
 
 .flickable { 
     overflow:hidden; 
     background:white;
 }
 
+.flickable li { width:100%; }
 
+.down-arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #ddd;
+}
+
+h2 { 
+    font-size:1em;
+    font-weight:normal;
+}
+
+.head { background-color:#ddd; }
+.head h2 { padding:5px 7px 5px 5px; text-align:right; }
+.head .down-arrow { 
+    position:relative; 
+    float:right; 
+    right:10px;
+}
 
