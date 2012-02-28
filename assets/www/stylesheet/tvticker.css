@@ -47,11 +47,12 @@ h1 {
 #navslider {
     width:50%;
     float:right;
-    overflow:auto;
+    overflow:visible;
 }
 .navitem { 
     padding:7px 0; 
-    font-size:0.9em;
+    font-size:1em;
+    position:relative;
 }
 
 .arrow {
@@ -68,12 +69,12 @@ h1 {
 }
 
 #navbar .arrow.foreground {
-    top:21px;
+    top:23px;
 }
 
 #navbar .arrow.background {
     border-bottom-color:rgba(204, 204, 204, 0.7);
-    top:25px;
+    top:27px;
 }
 
 

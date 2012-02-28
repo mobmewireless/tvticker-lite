@@ -23,12 +23,50 @@ $.jQTouch({
 
 
 $(function setupFlickable() {
+
     var itemWidth = $('.flickable').width();
+    var navSlider = $('#navslider')[0];
+    var navItems = $('.navitem', navslider);
+
+    function repositionNav(page) {
+
+        var delta;
+        if (0 == page)
+            delta = 0;
+        else if (1 == page)
+            delta = -$(navSlider).width();
+
+        // Enable animation
+        navSlider.style.WebkitTransition = '-webkit-transform 0.4s ease';
+        navSlider.style.MozTransition = '-moz-transform 0.4s ease';
+        navSlider.style.OTransition = '-o-transform 0.4s ease';
+        navSlider.style.transition = 'transform 0.4s ease';
+
+        // Move
+        navSlider.style.WebkitTransform = 'translate3d(' + delta + 'px, 0, 0)';
+        navSlider.style.MozTransform = 'translateX(' + delta + 'px)';
+        navSlider.style.OTransform = 'translateX(' + delta + 'px)';
+        navSlider.style.transform = 'translate3d(' + delta + 'px, 0, 0)';
+
+        var navItemNudgeBy = $(navItems[page]).width() / 2;
+        if (0 == page) {
+            $(navItems[0]).css({ left: -navItemNudgeBy + 'px' });
+            $(navItems[1]).css({ left: 0 + 'px' });
+        }
+        else if (1 == page) {
+            $(navItems[1]).css({ left: navItemNudgeBy + 'px' });
+            $(navItems[0]).css({ left: 0 + 'px' });
+        }
+    }
+
+    repositionNav(0);
+
     $('.flickable .page').width(itemWidth - 1);
     Flickable('.flickable', {
         itemWidth: itemWidth,
         enableMouseEvents: true,
         showIndicators: false,
+        callback: repositionNav
     });
 });
 
