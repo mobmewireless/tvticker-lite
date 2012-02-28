@@ -1,0 +1,34 @@
+#jqt .toolbar {
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    -webkit-box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px;
+    box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px;
+    border-bottom:1px solid black;
+    z-index:10;
+    position:fixed;
+    padding:5px;
+    background:#393939;
+    overflow:auto;
+    width:100%;
+    left:0;
+    top:0;
+}
+
+h1 {
+    color:#fff;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size:18px;
+}
+
+.branding {
+    background:url(../images/logo_32.png) no-repeat;
+    height:33px;
+    margin: -5px 0px 0px;
+    float:left;
+}
+
+.branding h1 { padding:8px 0px 0px 38px; }
+
+.toolbar-gap { margin-top:40px; }

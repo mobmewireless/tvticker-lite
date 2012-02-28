@@ -2,144 +2,90 @@
   <head>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1 user-scalable=no,width = 320" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <style type="text/css" media="screen">@import "stylesheet/themes/css/apple.css";</style>
-    <style type="text/css" media="screen">@import "stylesheet/custom.css";</style>
-    <style type="text/css" media="screen">@import "stylesheet/flickable.css";</style>
+    <link rel="stylesheet" href="stylesheet/flickable.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="stylesheet/tvticker.css" type="text/css" media="screen" charset="utf-8" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic">
     <link rel="shortcut icon" href="/images/logo_32.png" />
     <script src="javascript/vendor/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascript/vendor/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascript/vendor/iscroll.js" type="text/javascript"></script>
-    <script src="javascript/vendor/flickable.js" type="text/javascript" charset="utf-8"></script>    
+    <script src="javascript/vendor/jqtouch.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/vendor/flickable.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/jquery.jsonrpc.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/md5.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascript/site.js" type="text/javascript" charset="utf-8"></script>    
-    <style type="text/css">
-      #header { 
-      position:absolute;
-      width:100%;
-      top:0;
-      height:40px;
-      z-index:30;
-      }
-      #nav-wrapper {
-      position:absolute;
-      width:100%;
-      top:40px;
-      }
-      .flickable {
-      position:absolute;
-      width:100%;
-      top:80px;
-      bottom:1px;
-      overflow:hidden;
-      }
-      .page { height:100%; }
-      #jqt .template { display:none }
-      #start ul  { border-top:0; }
-      #start ul li:nth-child(2) { border-top:0; }
-    </style>
+    <script src="javascript/tvticker.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
     <div id="jqt">
-
       <div id="start">
-        <div id="header">
-	  <div class="toolbar">
-	    <div class="branding">
-	      <h1>TV Ticker India</h1>
-	    </div>
-	  </div>
-        </div>
-
-        <div id="nav-wrapper">
-	  <div id="navbar">
-	    <div>
-	      <div>Now</div> 
-              <div>Later Today</div>
-	    </div>
-	  </div>
-	  <div class="indicator">
-	    <div class="arrow"></div>
+	<div class="toolbar">
+	  <div class="branding">
+	    <h1>TV Ticker India</h1>
 	  </div>
 	</div>
-
+        <div class="toolbar-gap"></div>
         <div class="flickable">
           <div id="pages">
-            <div id="now-showing" class="page">
-	      <div>
-		<div id="pullDown">
-		  <span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to refresh...</span>
-		</div>
-		<ul>
-
-                  <li href="#show" class="template">
-                    <div class="details">
-		      <div class="name"></div>
-                      <div class="pull-left">
-			<div class="category"></div>
-			<div class="channel"></div>
-                      </div>
-                      <div class="pull-right">
-			<span class="rating" data-rating=""></span>
-			<div class="time-left"></div>
-                      </div>
-		    </div>
-                  </li>
-		</ul>
-              </div>
-	    </div>
-
-            <div id="later-today" class="page">
-              <div>
-		<div id="pullDown">
-		  <span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to refresh...</span>
-		</div>
-
-                <div class="template">
-                  <div class="category-name"></div>
-                  <ul>
-                    <li href="#show" class="show template">
-                      <div class="details">
-		        <div class="name"></div>
-                        <div class="pull-left">
-			  <div class="category"></div>
-			  <div class="channel"></div>
-                        </div>
-                        <div class="pull-right">
-			  <span class="rating" data-rating=""></span>
-			  <div class="time-left"></div>
-                        </div>
-		      </div>
-                    </li>                  
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div id="show">
-        <div class="toolbar">
-          <div class="branding">
-            <h1 class="title"></h1>
-          </div>
-        </div>
-        <div>
-          <img class="thumbnail large" src="http://admin.tvticker.in/image/1/thumbnail" />
-          <div class="description"></div>
-          <div class="">
-            <div class="rating_star">
-              <a href="#"></a>
+            <ul id="now-showing" class="edgetoedge page">
+              <li href="#show" class="template touch button">
+                <div class="title"></div>
+                <div class="category"></div>
+                <div class="channel"></div>
+                <div class="rating"></div>
+                <div class="time-left"></div>
+              </li>
+              <li href="#show" class="touch button">Dummy 2</li>          
+              <li href="#show" class="touch button">Dummy 3</li>
+              <li href="#show" class="touch button">Dummy 4</li>
+              <li href="#show" class="touch button">Dummy 5</li>
+              <li href="#show" class="touch button">Dummy 1</li>
+              <li href="#show" class="touch button">Dummy 2</li>          
+              <li href="#show" class="touch button">Dummy 3</li>
+              <li href="#show" class="touch button">Dummy 4</li>
+              <li href="#show" class="touch button">Dummy 5</li>
+              <li href="#show" class="touch button">Dummy 1</li>
+              <li href="#show" class="touch button">Dummy 2</li>          
+              <li href="#show" class="touch button">Dummy 3</li>
+              <li href="#show" class="touch button">Dummy 4</li>
+              <li href="#show" class="touch button">Dummy 5</li>
+              <li href="#show" class="touch button">Dummy 1</li>
+              <li href="#show" class="touch button">Dummy 2</li>          
+              <li href="#show" class="touch button">Dummy 3</li>
+              <li href="#show" class="touch button">Dummy 4</li>
+              <li href="#show" class="touch button">Dummy 5</li>
+            </ul>
+            <div class="page">
+              <ul class="edgetoedge">
+                <li href="#show" class="touch button">Category #1</li>
+                <li href="#show" class="touch button">Dummy 2</li>          
+                <li href="#show" class="touch button">Dummy 3</li>
+                <li href="#show" class="touch button">Dummy 4</li>
+                <li href="#show" class="touch button">Dummy 5</li>
+              </ul>
+              <ul class="edgetoedge">
+                <li href="#show" class="touch button">Category #2</li>
+                <li href="#show" class="touch button">Dummy 2</li>          
+                <li href="#show" class="touch button">Dummy 3</li>
+                <li href="#show" class="touch button">Dummy 4</li>
+                <li href="#show" class="touch button">Dummy 5</li>
+              </ul>
+              <ul class="edgetoedge">
+                <li href="#show" class="touch button">Category #2</li>
+                <li href="#show" class="touch button">Dummy 2</li>          
+                <li href="#show" class="touch button">Dummy 3</li>
+                <li href="#show" class="touch button">Dummy 4</li>
+                <li href="#show" class="touch button">Dummy 5</li>
+              </ul>
+              <ul class="edgetoedge">
+                <li href="#show" class="touch button">Category #2</li>
+                <li href="#show" class="touch button">Dummy 2</li>          
+                <li href="#show" class="touch button">Dummy 3</li>
+                <li href="#show" class="touch button">Dummy 4</li>
+                <li href="#show" class="touch button">Dummy 5</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </body>
 </html>
