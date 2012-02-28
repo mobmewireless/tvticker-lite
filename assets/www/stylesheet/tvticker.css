@@ -1,4 +1,6 @@
 
+#jqt { background-color:white; }
+
 .left { float:left }
 .right { float:right }
 
@@ -32,6 +34,52 @@ h1 {
     margin: -5px 0px 0px;
     float:left;
 }
+
+#navbar {
+    position:fixed;
+    top:39px;
+    z-index:9;
+    width:100%;
+    background-color:#eee;
+    border-bottom:1px solid rgba(204, 204, 204, 0.7);
+}
+
+#navslider {
+    width:50%;
+    float:right;
+    overflow:auto;
+}
+.navitem { 
+    padding:7px 0; 
+    font-size:0.9em;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid white;
+}
+
+#navbar .arrow {
+    margin:auto;
+    position:relative;
+}
+
+#navbar .arrow.foreground {
+    top:21px;
+}
+
+#navbar .arrow.background {
+    border-bottom-color:rgba(204, 204, 204, 0.7);
+    top:25px;
+}
+
+
+#flickables { margin-top:80px; }
+#flickables ul { border:0; }
+#flickables li:first-child  { border-top:0; }
 
 .branding h1 { padding:8px 0px 0px 38px; }
 
@@ -74,3 +122,6 @@ h2 {
     overflow:hidden; 
     background:white;
 }
+
+
+

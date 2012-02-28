@@ -73,8 +73,8 @@ h1 {
     -moz-transform: rotate(45deg) ;
     -o-transform: rotate(45deg)  ;
     -ms-transform: rotate(45deg) ;
-    border-top:1px solid #ccc;
-    border-left:1px solid #ccc;
+    border-top:1px solid red;
+    border-left:1px solid red;
 }
 
 #jqt ul {
