@@ -88,7 +88,7 @@ $(function setupFlickable() {
         showIndicators: false,
         callback: function(page) {
             repositionNav(page);
-            setScrollPosition(page);
+//            setScrollPosition(page);
             lastPage = page;
         }
     });
