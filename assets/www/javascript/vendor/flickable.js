@@ -89,7 +89,6 @@ var Flickable = function(elementSelector, options) {
             element.addEventListener(events.start, function(evt) {
                 
                 // Set up which touch to use (if multiple)
-                console.log('touch');
                 touchesInUse++;
                 currentTouch = touchesInUse - 1;
                 
@@ -136,7 +135,6 @@ var Flickable = function(elementSelector, options) {
                 };
                 
                 var endEvent = function(evt) {
-                    console.log('endEvent');
                     var diff = current[0] - origin[0];
                     
                     // Enable animation
@@ -164,7 +162,7 @@ var Flickable = function(elementSelector, options) {
                     if (settings.callback) {
                         setTimeout(function() {
                             settings.callback(currentSlide);
-                        }, 200);
+                        }, 0);
                     }
                     
                     if (settings.showIndicators) {
@@ -181,13 +179,11 @@ var Flickable = function(elementSelector, options) {
                     touchesInUse--;
                     
                     // Remove drag and end event listeners
-                    console.log('removing endEvent');
                     element.removeEventListener(events.move, moveEvent, false);
                     element.removeEventListener(events.end, endEvent, false);
                 };
                 
                 // Set up drag and end event listeners
-                console.log('Adding endEvent');
                 element.addEventListener(events.move, moveEvent, false);
                 element.addEventListener(events.end, endEvent, false);
                 

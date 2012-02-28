@@ -28,6 +28,26 @@ $(function setupFlickable() {
     var navSlider = $('#navslider')[0];
     var navItems = $('.navitem', navslider);
 
+    var lastPage = -1;
+
+    function setScrollPosition(page) {
+        /* Set scroll position for the current flicked page */
+
+        if (lastPage == page)
+            return;
+
+        var otherPage = (page + 1) % 2;
+
+        // Remember the current scroll position for otherPage
+        $(navItems[otherPage]).data('scrollY', window.scrollY);
+        console.log('other', otherPage, window.scrollY);
+
+        // Restore saved scroll for this page
+        var savedScroll = $($(navItems)[page]).data('scrollY') || 0;
+        console.log('this', page, savedScroll);
+        window.scrollTo(0, savedScroll);
+    }
+
     function repositionNav(page) {
 
         var delta;
@@ -66,7 +86,11 @@ $(function setupFlickable() {
         itemWidth: itemWidth,
         enableMouseEvents: true,
         showIndicators: false,
-        callback: repositionNav
+        callback: function(page) {
+            repositionNav(page);
+            setScrollPosition(page);
+            lastPage = page;
+        }
     });
 });
 
