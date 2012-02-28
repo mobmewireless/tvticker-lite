@@ -88,6 +88,8 @@ var Show = function(attrs) {
             time_left = 'in ' + t + (t==1 ? ' min ' : ' mins ');
         }
         $('.time-left', elem).text(time_left);
+        $('.rating', elem).addClass('r' + Math.min(3, Math.floor(self.rating)));
+
         return elem;
     }
 }
@@ -105,7 +107,25 @@ Show.nowShowing = function(limit, callback) {
     });
 };
 
+
+Show.laterToday = function(limit, callback) {
+    var params = [Date(), 'later', (limit || 20)];
+    rpc_call('current_frame_full_data', params, function(response) {
+        var shows = [];
+        for (i in response.result) {
+            var show = new Show(response.result[i].program);
+            Show[show.id] = show;
+            shows.push(show);
+        }
+        callback(shows);
+    });
+};
+
+
+
 $(function loadNowShowing() {
+    /* Loads & sets up the now-showing page */
+
     var count=20,
         container=$('#now-showing'),
         template=$('#now-showing li.template');
@@ -117,6 +137,51 @@ $(function loadNowShowing() {
             $(container).prepend(item);
         });
         // Trim list tail, save the template item
-        $('li:not(.template)', container).slice(count).remove();
+        $('.show:not(.template)', container).slice(count).remove();
+        
+        // Set height of parent to height of the container
+        $('.flickable').height($(container).height());
+    });
+});
+
+$(function loadLaterToday() {
+    /* Loads & sets up the later-today page */
+
+    var count=20,
+        container=$('#later-today'),
+        template=$('#later-today .template');
+
+    Show.laterToday(count, function(shows) {
+        // Group & sort by category names
+        var categories={},
+            names=[];
+        $.each(shows, function(i, show) {
+            var name = show.category.name.split(/:/)[0];
+            if (!categories[name]) {
+                categories[name] = [];
+                names.push(name);
+            }
+            categories[name].push(show);
+        });
+
+        names.sort();
+
+        // Clear current list & add to it
+        $('.category:not(.template)', container).remove();
+        $.each(names, function(i, name) {
+
+            var categoryItem = $(template).clone();
+            $(categoryItem).removeClass('template');
+            $('.show', categoryItem).remove(); // remove the empty show item
+            $('.category-name', categoryItem).text(name);
+            
+            $(categories[name]).each(function(i, show) {
+                var showItem = show.populateDetails($('.show', template).clone());
+                $('.shows', categoryItem).append(showItem);
+            });
+
+            $(container).append(categoryItem);
+        });
+
     });
 });

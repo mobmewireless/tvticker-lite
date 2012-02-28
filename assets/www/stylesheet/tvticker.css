@@ -1,3 +1,7 @@
+
+.left { float:left }
+.right { float:right }
+
 #jqt .toolbar {
     -webkit-box-sizing:border-box;
     box-sizing:border-box;
@@ -32,3 +36,41 @@ h1 {
 .branding h1 { padding:8px 0px 0px 38px; }
 
 .toolbar-gap { margin-top:40px; }
+
+.template { display:none; }
+
+#start ul { margin:0; padding:0; }
+
+#start li.show { color:black; }
+.show {
+    font-family: 'Roboto';
+    font-weight: normal;
+    font-size:0.8em;
+    overflow:auto;
+}
+.show .title { 
+    font-weight:bold; 
+    overflow:hidden; 
+    white-space:nowrap;
+}
+.show .left  { width:73%; }
+.show .left > div { overflow:hidden; white-space:nowrap; }
+.show .right { width:75px; }
+.show .time-left { font-size:0.9em; }
+
+.show .rating { background:url('../images/rating.png'); width:50px; height:17px;display:block;}
+.show .rating.r0 { background-position: 0px 16px;}
+.show .rating.r1 { background-position: 0px 33px;}
+.show .rating.r2 { background-position: 0px 49px;}
+.show .rating.r3 { background-position: 0px 66px;}
+
+h2 { 
+    background-color:white; 
+    font-size:1em;
+    font-weight:normal;
+}
+
+.flickable { 
+    overflow:hidden; 
+    background:white;
+}
