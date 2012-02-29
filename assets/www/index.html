@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic">
     <link rel="shortcut icon" href="/images/logo_32.png" />
     <script src="javascript/vendor/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascript/vendor/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/vendor/jqtouch.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/flickable.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/jquery.jsonrpc.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/md5.js" type="text/javascript" charset="utf-8"></script>
@@ -16,11 +16,11 @@
   </head>
   <body>
     <div id="jqt">
+
       <div id="start">
 	<div class="toolbar">
-	  <div class="branding">
-	    <h1>TV Ticker India</h1>
-	  </div>
+	  <div class="branding"><h1>TV Ticker India</h1></div>
+          <img class="refresh" src="/images/spinner.gif" />
 	</div>
         <div id="navbar">
           <div id="navslider">
@@ -71,7 +71,10 @@
 
           </div>
         </div>
-      </div>
+        <div id="loading">Loading shows..</div>
+      </div><!-- end of start -->
+
+
     </div>
   </body>
 </html>

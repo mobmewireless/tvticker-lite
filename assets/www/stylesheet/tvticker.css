@@ -7,8 +7,8 @@
 #jqt .toolbar {
     -webkit-box-sizing:border-box;
     box-sizing:border-box;
-    -webkit-box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px;
-    box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px;
+    /* -webkit-box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px; */
+    /* box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px; */
     border-bottom:1px solid black;
     z-index:10;
     position:fixed;
@@ -31,13 +31,20 @@ h1 {
 .branding {
     background:url(../images/logo_32.png) no-repeat;
     height:33px;
-    margin: -5px 0px 0px;
+    margin: 0px;
     float:left;
+}
+
+.refresh {
+    width:24px;
+    height:24px;
+    float:right;
+    padding:4px;
 }
 
 #navbar {
     position:fixed;
-    top:39px;
+    top:44px;
     z-index:9;
     width:100%;
     background-color:#eee;
@@ -75,13 +82,13 @@ h1 {
 }
 
 
-#flickables { margin-top:75px; }
+#flickables { margin-top:78px; }
 #flickables ul { border:0; }
 #flickables li:first-child  { border-top:0; }
 
 .branding h1 { padding:8px 0px 0px 38px; }
 
-.template { display:none; }
+.template { height:1px; overflow:hidden; visibility:hidden; }
 
 #start ul { margin:0; padding:0; }
 
@@ -137,3 +144,19 @@ h2 {
     right:10px;
 }
 
+.spinner { 
+    position:absolute;
+    width:60%;
+    height:50px;
+    left:20%;
+    top:40%;
+    text-align:center;
+    clear:both;
+}
+
+#loading {
+    position:absolute;
+    width:100%;
+    z-index:10;
+    text-align:center;
+}

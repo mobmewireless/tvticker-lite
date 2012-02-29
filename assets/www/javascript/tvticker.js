@@ -12,10 +12,10 @@
 })(Zepto);
 
 
-$.jQTouch({
+var jQT = $.jQTouch({
     icon: 'jqtouch.png',
     statusBar: 'black',
-    preloadImages: [],
+    preloadImages: ['images/spinner.gif', 'images/refresh.png'],
     startupScreen: 'images/splash.png',
     icon: 'images/logo_32.png',
     trackScrollPositions: true
@@ -24,7 +24,7 @@ $.jQTouch({
 
 $(function setupFlickable() {
 
-    var itemWidth = $('.flickable').width();
+    var itemWidth = $('#flickables').width();
     var navSlider = $('#navslider')[0];
     var navItems = $('.navitem', navslider);
 
@@ -82,6 +82,7 @@ $(function setupFlickable() {
     repositionNav(0);
 
     $('.flickable .page').width(itemWidth - 1);
+
     Flickable('.flickable', {
         itemWidth: itemWidth,
         enableMouseEvents: true,
@@ -184,14 +185,24 @@ Show.laterToday = function(limit, callback) {
     });
 };
 
+Show.clearCachedData = function() {
+    for (id in this) {
+        if (!isNaN(parseInt(id))) { // destroy all ID -> objects
+            Show[id] = undefined;
+        }
+    }
+}
 
 
-$(function loadNowShowing() {
+function loadNowShowing(callback) {
     /* Loads & sets up the now-showing page */
 
     var count=20,
         container=$('#now-showing'),
         template=$('#now-showing li.template');
+
+    // Clear current list
+    $('.show:not(.template)', container).remove();
     
     Show.nowShowing(count, function(shows) {
         $.each(shows, function(i, show) {
@@ -199,20 +210,22 @@ $(function loadNowShowing() {
             $(item).removeClass('template');
             $(container).prepend(item);
         });
-        // Trim list tail, save the template item
-        $('.show:not(.template)', container).slice(count).remove();
         
         // Set height of parent to height of the container
         $('.flickable').height($(container).height());
+        callback && callback();
     });
-});
+}
 
-$(function loadLaterToday() {
+function loadLaterToday(callback) {
     /* Loads & sets up the later-today page */
 
     var count=20,
         container=$('#later-today'),
         template=$('#later-today .template');
+
+    // Clear current listing
+    $('.category:not(.template)', container).remove();
 
     Show.laterToday(count, function(shows) {
         // Group & sort by category names
@@ -229,8 +242,7 @@ $(function loadLaterToday() {
 
         names.sort();
 
-        // Clear current list & add to it
-        $('.category:not(.template)', container).remove();
+        // Add items to list
         $.each(names, function(i, name) {
 
             var categoryItem = $(template).clone();
@@ -246,5 +258,31 @@ $(function loadLaterToday() {
             $(container).append(categoryItem);
         });
 
+        callback && callback();
     });
+}
+
+function reloadPages() {
+    
+    var loadingElement = $('#loading');
+    $(loadingElement).show();
+
+    $('img.refresh').attr('src', "images/spinner.gif");
+    Show.clearCachedData();
+    loadLaterToday();
+
+    loadNowShowing(function() {
+        $(loadingElement).hide();
+        $(loadingElement).text('Refreshing..');
+        $('img.refresh').attr('src', "images/refresh.png");
+    });
+
+}
+
+
+$(function setupRefresh() {
+    $('#loading').css({ top: (screen.height / 2) + 'px' });
+    $('.refresh').click(reloadPages);
 });
+
+$(reloadPages);
