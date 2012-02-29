@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic">
     <link rel="shortcut icon" href="/images/logo_32.png" />
     <script src="javascript/vendor/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascript/vendor/jqtouch.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/vendor/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/flickable.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/jquery.jsonrpc.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascript/vendor/md5.js" type="text/javascript" charset="utf-8"></script>
@@ -40,7 +40,7 @@
         <div class="header-gap"></div>
 
         <ul class="list">
-          <li href="#show" class="show template touch button">
+          <li href="#show-page" class="show template touch button">
             <div class="title"></div>
             <div class="left">
               <div class="category"></div>
@@ -83,7 +83,7 @@
               <div class="down-arrow"></div>
             </div>
             <ul class="shows">
-              <li href="#show" class="show touch button">
+              <li href="#show-page" class="show touch button">
                 <div class="title"></div>
                 <div class="left">
                   <div class="category-sub"></div>
@@ -100,6 +100,26 @@
 
       </div>
 
+      <div id="show-page">
+	<div class="toolbar">
+	  <div class="branding"><h1 class="title"></h1></div>
+	</div>
+        <div class="toolbar-gap"</div>
+        <div class="show">
+          <div class="thumbnail large"><img src="" /></div>
+          <div style="background:#3d3d3d;color:white;overflow:auto;padding:5px;font-size:0.9em">
+            <div class="left">
+              <div class="rating"></div>
+              <div class="category"></div>
+            </div>
+            <div class="right">
+              <div class="channel"></div>
+            </div>
+          </div>
+          <div class="description"></div>
+        </div>
+      </div>
+      
       <div id="loading">Loading shows..</div>
     </div><!-- end of start -->
   </body>

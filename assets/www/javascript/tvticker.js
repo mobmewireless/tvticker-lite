@@ -15,7 +15,7 @@
 var jQT = $.jQTouch({
     icon: 'jqtouch.png',
     statusBar: 'black',
-    preloadImages: ['images/spinner.gif', 'images/refresh.png'],
+    preloadImages: ['images/spinner.gif', 'images/refresh.png', 'images/stripe.png'],
     startupScreen: 'images/splash.png',
     icon: 'images/logo_32.png',
     trackScrollPositions: true,
@@ -51,6 +51,9 @@ var Show = function(attrs) {
     var self = this;
     $.extend(self, attrs);
 
+    self.thumbnail_url = "http://admin.tvticker.in/image/:thumbnail_id/thumbnail".
+        replace(/:thumbnail_id/, self.thumbnail_id);
+
     self.minsToStart = function() {
         var milli = Date.parse(this.air_time_start) - Date.now();
         return Math.floor(milli / 60000);
@@ -66,7 +69,7 @@ var Show = function(attrs) {
     };
 
 
-    self.populateDetails = function(elem) {
+    self.populateDetails = function(elem, loadImages) {
         $('.title', elem).text(self.name);
         $('.category', elem).text(self.category.name.replace(/:/, '> '));
         $('.category-sub', elem).text(self.category.name.split(/:/)[1]);
@@ -81,6 +84,23 @@ var Show = function(attrs) {
         }
         $('.time-left', elem).text(time_left);
         $('.rating', elem).addClass('r' + Math.min(3, Math.floor(self.rating)));
+        $('.description', elem).text(self.description);
+
+
+        $(elem).data('show-id', self.id);
+        $(elem).prop('hash', $(elem).attr('href'));
+
+        if (!self.thumbnail && loadImages) {
+
+            var thumbImage = $('.thumbnail.large img', elem);
+            $(thumbImage).attr('src', '/images/spinner.gif'); // Show a spinner first
+
+            self.thumbnail = new Image();
+            self.thumbnail.src = self.thumbnail_url;
+            self.thumbnail.onload = function() {
+                $(thumbImage).attr('src', self.thumbnail_url);
+            }
+        }
 
         return elem;
     }
@@ -204,10 +224,16 @@ function reloadPages() {
 
 }
 
-
 $(function setupRefresh() {
     $('#loading').css({ top: (screen.height / 2) + 'px' });
     $('.refresh').click(reloadPages);
 });
+
+$(function setupShowPage() {
+    $('#show-page').bind('pageAnimationEnd', function() {
+        var show = Show[$(this).data('referrer').data('show-id')];
+        show.populateDetails(this, true);
+    });
+})
 
 $(reloadPages);

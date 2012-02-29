@@ -97,10 +97,11 @@ h1 {
     overflow:hidden; 
     white-space:nowrap;
 }
-.show .left  { width:73%; }
-.show .left > div { overflow:hidden; white-space:nowrap; }
-.show .right { width:75px; }
-.show .time-left { font-size:0.9em; }
+
+.list .show .left  { width:73%; }
+.list .show .left > div { overflow:hidden; white-space:nowrap; }
+.list .show .right { width:75px; }
+.list .show .time-left { font-size:0.9em; }
 
 .show .rating { background:url('../images/rating.png'); width:50px; height:17px;display:block;}
 .show .rating.r0 { background-position: 0px 16px;}
@@ -160,3 +161,25 @@ h2 {
 }
 
 .header-gap { margin-top:79px; height:1px; width:100%; }
+.toolbar-gap { margin-top:45px; height:1px; width:100%; }
+
+#show-page .thumbnail {
+    text-align:center; 
+    padding:10px;
+    background:url('/images/stripe.png');
+}
+
+#show-page .details {
+    padding:5px 10px;
+}
+
+#show-page .show {
+    font-size:1em;
+}
+
+#show-page .description { padding:10px; }
+#show-page .title { 
+    font-weight:normal; 
+    overflow:hidden; 
+    white-space:nowrap;
+}
