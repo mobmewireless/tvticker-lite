@@ -13,11 +13,10 @@
 
 
 var jQT = $.jQTouch({
-    icon: 'jqtouch.png',
     statusBar: 'black',
     preloadImages: ['images/spinner.gif', 'images/refresh.png', 'images/stripe.png'],
     startupScreen: 'images/splash.png',
-    icon: 'images/logo_32.png',
+    icon: 'images/icon.png',
     trackScrollPositions: true,
     useAnimations: false
 });
