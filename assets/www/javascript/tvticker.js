@@ -92,7 +92,7 @@ var Show = function(attrs) {
         if (!self.thumbnail && loadImages) {
 
             var thumbImage = $('.thumbnail.large img', elem);
-            $(thumbImage).attr('src', '/images/spinner.gif'); // Show a spinner first
+            $(thumbImage).attr('src', 'images/spinner.gif'); // Show a spinner first
 
             self.thumbnail = new Image();
             self.thumbnail.src = self.thumbnail_url;
