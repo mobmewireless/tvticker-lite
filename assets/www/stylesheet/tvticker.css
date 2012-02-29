@@ -1,4 +1,5 @@
 
+body { background-color:white; }
 #jqt { background-color:white; }
 
 .left { float:left }
@@ -7,8 +8,6 @@
 #jqt .toolbar {
     -webkit-box-sizing:border-box;
     box-sizing:border-box;
-    /* -webkit-box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px; */
-    /* box-shadow:rgba(0, 0, 0, 0.4) 0 1px 6px; */
     border-bottom:1px solid black;
     z-index:10;
     position:fixed;
@@ -42,7 +41,7 @@ h1 {
     padding:4px;
 }
 
-#navbar {
+.navbar {
     position:fixed;
     top:44px;
     z-index:9;
@@ -51,15 +50,22 @@ h1 {
     border-bottom:1px solid rgba(204, 204, 204, 0.7);
 }
 
-#navslider {
-    width:50%;
-    float:right;
-    overflow:visible;
+.navitem {
+    width: 49%;
+    text-align:center;
+    padding:5px 0 3px 0;
+    display:block;
+    text-decoration:none;
+    color:black;
 }
-.navitem { 
-    padding:7px 0; 
-    font-size:1em;
+
+.navitem.active { background-color:#ccc; }
+
+
+.pointer {
     position:relative;
+    height:6px;
+    top:-3px;
 }
 
 .arrow {
@@ -69,30 +75,17 @@ h1 {
     border-right: 6px solid transparent;
     border-bottom: 6px solid white;
 }
-
-#navbar .arrow {
-    margin:auto;
-    position:relative;
+.navbar .arrow { margin:auto; position:relative; }
+.navbar .arrow.foreground {  top:2px; }
+.navbar .arrow.background { 
+    top:6px;
+    border-bottom-color:rgba(204, 204, 204, 0.7); 
 }
-
-#navbar .arrow.foreground { top:23px; }
-#navbar .arrow.background {
-    border-bottom-color:rgba(204, 204, 204, 0.7);
-    top:27px;
-}
-
-
-#flickables { margin-top:78px; }
-#flickables ul { border:0; }
-#flickables li:first-child  { border-top:0; }
 
 .branding h1 { padding:8px 0px 0px 38px; }
-
 .template { height:1px; overflow:hidden; visibility:hidden; }
 
-#start ul { margin:0; padding:0; }
 
-#start li.show { color:black; }
 .show {
     font-family: 'Roboto';
     font-weight: normal;
@@ -116,13 +109,6 @@ h1 {
 .show .rating.r3 { background-position: 0px 66px;}
 
 
-.flickable { 
-    overflow:hidden; 
-    background:white;
-}
-
-.flickable li { width:95%; }
-
 .down-arrow {
     width: 0;
     height: 0;
@@ -137,7 +123,7 @@ h2 {
 }
 
 .head { background-color:#ddd; }
-.head h2 { padding:5px 7px 5px 5px; text-align:right; }
+.head h2 { padding:5px 7px 5px 5px; text-align:right;  }
 .head .down-arrow { 
     position:relative; 
     float:right; 
@@ -160,3 +146,17 @@ h2 {
     z-index:10;
     text-align:center;
 }
+
+#jqt .list, #jqt .list ul { 
+    margin:0; 
+    padding:0; 
+    border:0;
+}
+
+#jqt .list li:first-child  { border-top:0; }
+#jqt .list li { 
+    width:95%; 
+    color:black;
+}
+
+.header-gap { margin-top:79px; height:1px; width:100%; }

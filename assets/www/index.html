@@ -17,27 +17,76 @@
   <body>
     <div id="jqt">
 
-      <div id="start">
+      <div id="now-showing">
+
 	<div class="toolbar">
 	  <div class="branding"><h1>TV Ticker India</h1></div>
           <img class="refresh" src="/images/spinner.gif" />
 	</div>
-        <div id="navbar">
-          <div id="navslider">
-            <div class="navitem left">Now</div>
-            <div class="navitem right">Later Today</div>
-          </div>
-          <div class="arrow background"></div>
-          <div class="arrow foreground"></div>
+        <div class="navbar">
+          <a class="navitem left">
+            <div>Now</div>
+            <div class="pointer">
+              <div class="arrow background"></div>
+              <div class="arrow foreground"></div>
+            </div>
+          </a>
+          <a class="navitem right" href="#later-today">
+            <div>Later Today</div>
+            <div class="pointer"></div>
+          </a>
         </div>
-        <div id="flickables" class="flickable">
-          <div id="pages">
 
-            <ul id="now-showing" class="page">
-              <li href="#show" class="show template touch button">
+        <div class="header-gap"></div>
+
+        <ul class="list">
+          <li href="#show" class="show template touch button">
+            <div class="title"></div>
+            <div class="left">
+              <div class="category"></div>
+              <div class="channel"></div>
+            </div>
+            <div class="right">
+              <div class="rating"></div>
+              <div class="time-left"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div id="later-today">
+
+	<div class="toolbar">
+	  <div class="branding"><h1>TV Ticker India</h1></div>
+          <img class="refresh" src="/images/spinner.gif" />
+	</div>
+        <div class="navbar">
+          <a class="navitem left" href="#now-showing">
+            <div>Now</div>
+            <div class="pointer"></div>
+          </a>
+          <a class="navitem right">
+            <div>Later Today</div>
+            <div class="pointer">
+              <div class="arrow background"></div>
+              <div class="arrow foreground"></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="header-gap"></div>
+
+        <div class="list">
+          <div class="category template">
+            <div class="head">
+              <h2 class="category-name"></h2>
+              <div class="down-arrow"></div>
+            </div>
+            <ul class="shows">
+              <li href="#show" class="show touch button">
                 <div class="title"></div>
                 <div class="left">
-                  <div class="category"></div>
+                  <div class="category-sub"></div>
                   <div class="channel"></div>
                 </div>
                 <div class="right">
@@ -46,35 +95,12 @@
                 </div>
               </li>
             </ul>
-
-            <div id="later-today" class="page">
-              <div class="category template">
-                <div class="head">
-                  <h2 class="category-name"></h2>
-                  <div class="down-arrow"></div>
-                </div>
-                <ul class="shows">
-                  <li href="#show" class="show touch button">
-                    <div class="title"></div>
-                    <div class="left">
-                      <div class="category-sub"></div>
-                      <div class="channel"></div>
-                    </div>
-                    <div class="right">
-                      <div class="rating"></div>
-                      <div class="time-left"></div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
           </div>
         </div>
-        <div id="loading">Loading shows..</div>
-      </div><!-- end of start -->
 
+      </div>
 
-    </div>
+      <div id="loading">Loading shows..</div>
+    </div><!-- end of start -->
   </body>
 </html>
