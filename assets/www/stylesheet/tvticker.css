@@ -53,7 +53,7 @@ h1 {
 .navitem {
     width: 49%;
     text-align:center;
-    padding:5px 0 3px 0;
+    padding:10px 0 8px 0;
     display:block;
     text-decoration:none;
     color:black;
@@ -65,7 +65,7 @@ h1 {
 .pointer {
     position:relative;
     height:6px;
-    top:-3px;
+    top:2px;
 }
 
 .arrow {
@@ -160,13 +160,13 @@ h2 {
     color:black;
 }
 
-.header-gap { margin-top:79px; height:1px; width:100%; }
+.header-gap { margin-top:89px; height:1px; width:100%; }
 .toolbar-gap { margin-top:45px; height:1px; width:100%; }
 
 #show-page .thumbnail {
     text-align:center; 
     padding:10px;
-    background:url('/images/stripe.png');
+    background:url('../images/stripe.png');
 }
 
 #show-page .details {
